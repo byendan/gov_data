@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GovData</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav>
+   <div class="nav-wrapper">
+     <a href="#" class="brand-logo">Gov Data</a>
+   </div>
+ </nav>
+
+<%= yield %>
+
+</body>
+</html>
