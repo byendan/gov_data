@@ -1,1 +1,31 @@
-<h1>Home Page!</h1>
+
+<div class="nasa-apod" style="background-image:url(<%= @nasa_hd_image %>);">
+  <div class="nasa-backdrop">
+
+    <div class="nasa-image-title">
+      <h3><%= @nasa_image_title %></h3>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="tagline col s12 m10 offset-m1">
+          <h2>Welcome to a website of data provided by government api's</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="nasa-exp">
+  <div class="nasa-explanation-title row">
+    <div class="col s12 grey darken-3">
+      <h3>NASA Astronomy Picture of the Day:</h3>
+    </div>
+  </div>
+
+  <div class="nasa-explanation row">
+    <div class="col s12 m10 offset-m1">
+      <p><%= @nasa_image_explanation %></p>
+    </div>
+  </div>
+</div>
