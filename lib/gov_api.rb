@@ -1,24 +1,19 @@
 module GovApi
-  def get_data(api_url, desired_data)
-    api_key = ENV["GOV_API_KEY"]
-    address = "#{api_url}?api_key=#{api_key}"
+  def get_data(api_json_response, desired_data)
+    final_data = Hash.new
 
-    body = JSON.parse Net::HTTP.get(URI(address))
+    desired_data.each do |data_name|
+      final_data[data_name] = api_json_response[0][data_name]
+    end
 
-    return the_data(body, desired_data)
+    return final_data
 
   end
 
-  private
+  def api_respond_json(api_url)
+    api_key = ENV["GOV_API_KEY"]
+    address = "#{api_url}?api_key=#{api_key}"
 
-    def the_data(body_hash, desired_data_array)
-      final_data = Hash.new
-
-      desired_data_array.each do |data_name|
-        final_data[data_name] = body_hash[data_name]
-      end
-
-      return final_data
-
-    end
+    return JSON.parse Net::HTTP.get(URI(address))
+  end
 end
