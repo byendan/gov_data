@@ -7,7 +7,7 @@ RSpec.describe GovApi do
   describe "get desired data from endpoint" do
 
     it "responds with desired NASA APOD data" do
-      parsed_json = JSON.parse(File.read("./spec/support/fixtures/apod.json"))
+      parsed_json = JSON.parse(File.read("./spec/support/fixtures/apod.json"))[0]
       desired_data_keys = ['date', 'hdurl', 'title']
 
       expected_api_hash = { "date" => "2016-07-14",

@@ -3,7 +3,7 @@ module GovApi
     final_data = Hash.new
 
     desired_data.each do |data_name|
-      final_data[data_name] = api_json_response[0][data_name]
+        final_data[data_name] = api_json_response[data_name]
     end
 
     return final_data
