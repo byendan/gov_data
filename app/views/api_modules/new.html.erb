@@ -1,0 +1,32 @@
+<div class="container">
+  <%= form_for @api_module do |f| %>
+    <h2>Api Module</h2>
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :name %>
+        <%= f.label "Name", for: "api_module_name" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :url %>
+        <%= f.label "Url", for: "api_module_url"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :graph_type %>
+        <%= f.label "Graph Type", for: "api_module_graph_type" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3 offset-s5">
+        <%= f.submit "Create Api Module", class: "btn" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
