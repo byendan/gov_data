@@ -4,6 +4,7 @@ class CreateApiModules < ActiveRecord::Migration
       t.string :name
       t.string :url
       t.string :graph_type
+      t.string :desired_data
       t.text :options
 
       t.timestamps null: false

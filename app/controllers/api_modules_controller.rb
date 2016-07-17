@@ -28,8 +28,8 @@ class ApiModulesController < ApplicationController
   def update
     @api_module = ApiModule.find(params[:id])
 
-    if @api_module.update_attributes(params[:api_module])
-      redirect_to "show"
+    if @api_module.update_attributes(api_module_params)
+      redirect_to @api_module
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class ApiModulesController < ApplicationController
     @api_module = ApiModule.find(params[:id])
 
     if @api_module.destroy
-      redirect_to "index"
+      redirect_to @api_modules
     else
       render :edit
     end
@@ -48,6 +48,6 @@ class ApiModulesController < ApplicationController
   private
 
   def api_module_params
-    params.require(:api_module).permit(:name, :url, :graph_type, :options)
+    params.require(:api_module).permit(:name, :url, :graph_type, :desired_data, :options)
   end
 end

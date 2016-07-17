@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 20160714231029) do
     t.string   "name"
     t.string   "url"
     t.string   "graph_type"
+    t.string   "desired_data"
     t.text     "options"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
