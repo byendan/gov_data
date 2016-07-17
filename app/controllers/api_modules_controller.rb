@@ -1,6 +1,10 @@
 class ApiModulesController < ApplicationController
+  include GovApi
+
   def show
     @api_module = ApiModule.find(params[:id])
+    desired_data = @api_module.desired_data.split(',')
+    @module_data = get_data(api_respond_json(@api_module.url), desired_data)
   end
 
   def index

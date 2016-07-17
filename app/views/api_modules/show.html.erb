@@ -1,2 +1,15 @@
 <h1><%= @api_module.name %></h1>
-<h2>This is show</h2>
+<div class="container">
+  <% @module_data.each do |mod_key, mod_value| %>
+    <div class="row">
+      <div class="col s12">
+        <% if is_image?(mod_value) %>
+          <img src="<%= mod_value %>" />
+        <% else %>
+            <h3><%= mod_value %></h3>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
