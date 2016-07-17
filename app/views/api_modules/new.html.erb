@@ -15,10 +15,17 @@
       </div>
     </div>
 
+
     <div class="row">
       <div class="input-field col s8">
-        <%= f.text_field :graph_type %>
-        <%= f.label "Graph Type", for: "api_module_graph_type" %>
+        <select name="api_module[graph_type]">
+
+          <% @api_module.get_graph_types.each do |g_type| %>
+            <option value="<%= g_type%>"><%= g_type %></option>
+          <% end %>
+
+        </select>
+        <label>Graph Type Select</label>
       </div>
     </div>
 

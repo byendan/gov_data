@@ -12,10 +12,10 @@ class ApiModulesController < ApplicationController
   end
 
   def create
-    @api_module = ApiModule.new(params[:api_module])
+    @api_module = ApiModule.new(api_module_params)
 
     if @api_module.save
-      redirect_to "show"
+      redirect_to @api_module
     else
       render :new
     end
@@ -43,5 +43,11 @@ class ApiModulesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  private
+
+  def api_module_params
+    params.require(:api_module).permit(:name, :url, :graph_type, :options)
   end
 end
