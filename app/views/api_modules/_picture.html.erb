@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class="nasa-apod" style="background-image:url(<%= picture.decorated_module['picture'] %>);">
+    <div class="nasa-backdrop">
+
+      <div class="nasa-image-title">
+        <h3><%= picture.decorated_module["title"] %></h3>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="nasa-explanation row">
+    <div class="col s12 m10 offset-m1">
+      <p><%= picture.decorated_module['description'] %></p>
+    </div>
+  </div>
+
+</div>

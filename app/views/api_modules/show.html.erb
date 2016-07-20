@@ -1,15 +1,1 @@
-<h1><%= @api_module.name %></h1>
-<div class="container">
-  <% @module_data.each do |mod_key, mod_value| %>
-    <div class="row">
-      <div class="col s12">
-        <% if is_image?(mod_value) %>
-          <img src="<%= mod_value %>" />
-        <% else %>
-            <h3><%= mod_value %></h3>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
-</div>
+<%= information_for(@api_module.graph_type, @module_data) %>
