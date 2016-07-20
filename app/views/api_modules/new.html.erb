@@ -1,0 +1,46 @@
+<div class="container">
+  <%= form_for @api_module do |f| %>
+    <h2>Api Module</h2>
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :name %>
+        <%= f.label "Name", for: "api_module_name" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :url %>
+        <%= f.label "Url", for: "api_module_url"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <%= f.text_field :desired_data %>
+        <%= f.label "Desired Data", for: "api_module_desired_data" %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="input-field col s8">
+        <select name="api_module[graph_type]">
+
+          <% @api_module.get_graph_types.each do |g_type| %>
+            <option value="<%= g_type%>"><%= g_type %></option>
+          <% end %>
+
+        </select>
+        <label>Graph Type Select</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3 offset-s5">
+        <%= f.submit "Create Api Module", class: "btn" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
