@@ -19,5 +19,18 @@ RSpec.describe GovApi do
       expect(api_result_hash).to eq(expected_api_hash)
 
     end
+
+    it "can find data for the rover galary" do
+      parsed_json = JSON.parse(File.read("./spec/support/fixtures/rover.json"))
+      desired_data = ["img_src"]
+
+      expected_image_count = 25
+
+      returned_data = find_data(parsed_json, desired_data[0])
+
+      expect(returned_data.length).to eq(expected_image_count)
+      expect(returned_data.class).to eq(Array)
+      expect(returned_data[0].class).to eq(String)
+    end
   end
 end
