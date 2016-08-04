@@ -15,7 +15,7 @@ module GovApi
 
   end
 
-  def api_respond_json(api_url, options)
+  def api_respond_json(api_url, options={})
     api_key = ENV["GOV_API_KEY"]
 
     address="#{api_url}?"
