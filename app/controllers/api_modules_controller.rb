@@ -4,7 +4,9 @@ class ApiModulesController < ApplicationController
   def show
     @api_module = ApiModule.find(params[:id])
     desired_data = @api_module.desired_data.split(',')
-    @module_data = get_data(api_respond_json(@api_module.url), desired_data)
+    options = @api_module.options
+    #options not saving, have to figure that out
+    @module_data = get_data(api_respond_json(@api_module.url, options), desired_data)
   end
 
   def index
@@ -52,6 +54,6 @@ class ApiModulesController < ApplicationController
   private
 
   def api_module_params
-    params.require(:api_module).permit(:name, :url, :graph_type, :desired_data, :options)
+    params.require(:api_module).permit!
   end
 end

@@ -16,7 +16,7 @@ def decorate(graph_type, module_data)
   when "picture"
     return decorate_picture(module_data)
   when "galery"
-    return decorate_galery(module_data)
+    return module_data
   when "line"
     return decorate_line(module_data)
   when "bar"
@@ -51,13 +51,13 @@ def decorate_picture(module_data)
 
 end
 
-def decorate_galery(api_module, module_data)
+def decorate_galery(module_data)
 end
 
-def decorate_line(api_module, module_data)
+def decorate_line(module_data)
 end
 
-def decorate_bar(api_module, module_data)
+def decorate_bar(module_data)
 end
 
 end
