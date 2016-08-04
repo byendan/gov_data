@@ -33,6 +33,9 @@ module GovApi
     all_data = []
 
     json_data.each do |key, value|
+      if json_data[key].class == String
+        return "no data found"
+      end
       json_data[key].each do |pic_hash|
         all_data << pic_hash[desired_data]
       end
