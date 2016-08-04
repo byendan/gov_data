@@ -19,12 +19,19 @@ class ApiModulesController < ApplicationController
 
   def create
     @api_module = ApiModule.new(api_module_params)
+    response_data = get_data(api_respond_json(@api_module.url, @api_module.options), @api_module.desired_data.split(','))
 
-    if @api_module.save
-      redirect_to @api_module
+    if response_data.class != String
+      if @api_module.save
+        redirect_to @api_module
+      else
+        render :new
+      end
     else
+      flash[:error] = "The response provided no data"
       render :new
     end
+
   end
 
   def edit

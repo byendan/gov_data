@@ -17,6 +17,16 @@
 
  </nav>
 
+<div class="row">
+  <% flash.each do |key, value| %>
+    <div class="flash-response col s12 <%= flash_color(key) %>" style="text-align:center">
+      <h3><%= value %></h3>
+    </div>
+  <% end %>
+
+</div>
+
+
 <%= yield %>
 
 </body>
