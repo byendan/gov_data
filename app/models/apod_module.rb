@@ -1,6 +1,5 @@
 class ApodModule < ActiveRecord::Base
 
-
   def initialize(options={})
     super
     self.name = "NASA Astronomical Picture of the Day"
