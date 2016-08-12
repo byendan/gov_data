@@ -17,7 +17,7 @@ RSpec.describe RoverModule, type: :model do
     end
 
     it "builds a query successfully" do
-      test_module = RoverModule.new(rover: "curiosity", date: "2015-6-3")
+      test_module = RoverModule.new(rover: "curiosity", date: "2015-6-3", camera: "")
       test_module.save
 
       expected_query = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&'
@@ -31,7 +31,7 @@ RSpec.describe RoverModule, type: :model do
       json_data = JSON.parse(File.read("./spec/support/fixtures/rover.json"))
 
       expected_image_count = 25
-  
+
       returned_data = test_module.return_array(json_data)
 
       expect(returned_data.length).to eq(expected_image_count)

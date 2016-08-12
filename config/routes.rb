@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#show'
 
-  resources :api_modules
   resources :apod_modules
   resources :rover_modules
   # The priority is based upon order of creation: first created -> highest priority.

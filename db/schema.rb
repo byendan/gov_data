@@ -13,16 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160811211117) do
 
-  create_table "api_modules", force: :cascade do |t|
-    t.string   "name"
-    t.string   "url"
-    t.string   "graph_type"
-    t.string   "desired_data"
-    t.text     "options"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "apod_modules", force: :cascade do |t|
     t.string   "name"
     t.string   "base_query"
