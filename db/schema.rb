@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714231029) do
+ActiveRecord::Schema.define(version: 20160811211117) do
 
-  create_table "api_modules", force: :cascade do |t|
+  create_table "apod_modules", force: :cascade do |t|
     t.string   "name"
-    t.string   "url"
-    t.string   "graph_type"
-    t.string   "desired_data"
-    t.text     "options"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "base_query"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rover_modules", force: :cascade do |t|
+    t.string   "name"
+    t.string   "base_query"
+    t.string   "full_query"
+    t.string   "rover"
+    t.string   "camera"
+    t.string   "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

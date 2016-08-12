@@ -1,0 +1,52 @@
+<div class="container">
+  <%= form_for @rover_module do |f| %>
+
+    <h2>Rover Module</h2>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <select name="rover_module[rover]">
+
+          <% @rover_module.rover_types.each do |r_type| %>
+            <option value="<%= r_type %>"><%= r_type %></option>
+          <% end %>
+
+        </select>
+        <label>Rover Select</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <select name="rover_module[camera]">
+
+          <% @rover_module.camera_types.each do |c_type| %>
+            <option value="<%= c_type %>"><%= c_type %></option>
+          <% end %>
+
+        </select>
+        <label>Camera Select (optional)</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+        <label>Date</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s8">
+
+        <input type="date" class="datepicker" name="rover_module[date]">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s3 offset-s5">
+        <%= f.submit "Create Rover Module", class: "btn" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
