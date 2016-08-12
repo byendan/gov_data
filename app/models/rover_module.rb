@@ -8,11 +8,19 @@ class RoverModule < ActiveRecord::Base
     self.base_query = 'https://api.nasa.gov/mars-photos/api/v1/rovers/'
   end
 
+  def rover_types
+    ['curiosity', 'opportunity', 'spirit']
+  end
+
+  def camera_types
+    ['', 'fhaz', 'rhaz', 'navcam']
+  end
+
   def build_query
     return_query = self.base_query
     return_query += "#{self.rover}/photos?"
     return_query += "earth_date=#{self.date}&"
-    return_query += "camera=#{self.camera}&" if self.camera != nil
+    return_query += "camera=#{self.camera}&" if self.camera != ""
 
     # Saves the full query for easier access
     self.update_attributes(full_query: return_query)
