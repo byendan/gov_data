@@ -5,4 +5,5 @@ $(document).on 'page:load ready', ->
   $('.datepicker').pickadate
     selectMonths: true
     selectYears: 4
+  $('select').material_select()
   return
