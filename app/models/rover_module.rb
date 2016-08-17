@@ -13,7 +13,10 @@ class RoverModule < ActiveRecord::Base
   end
 
   def camera_types
-    ['', 'fhaz', 'rhaz', 'navcam']
+    {
+      'Curiosity' => ['fhaz', 'rhaz', 'mast', 'chemcam', 'mahli', 'mardi', 'navcam'],
+      'Opportunity and Spirit' => ['fhaz', 'rhaz', 'navcam', 'pancam', 'minites']
+    }
   end
 
   def build_query
