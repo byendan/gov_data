@@ -21,7 +21,7 @@ class RoverModulesController < ApplicationController
 
   def show
     @rover_module = RoverModule.find(params[:id])
-    @module_data = @rover_module.return_array(make_request(@rover_module.build_query))
+    @module_data = rover_request(@rover_module)
   end
 
   def edit
