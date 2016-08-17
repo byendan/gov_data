@@ -50,22 +50,29 @@ class RoverModulesController < ApplicationController
       months = %w(January February March April May June July August September October November December)
       month = nil
 
+      # find what month was selected
       months.each do |m|
         month = m if /#{m}/ =~ initial_date
       end
 
+      # translate month word to number
       new_date = initial_date.gsub(month, (months.index(month) + 1).to_s)
+
+      # Get the date set up to be split into an array of day-month-year
       new_date = new_date.gsub(',', '')
       new_date = new_date.gsub(' ', ',')
 
       date_ary = new_date.split(',')
 
-      # convert world standard format to NASA desired format
+      # convert world standard format to NASA desired format year-month-day
       new_date = "#{date_ary[2]}-#{date_ary[1]}-#{date_ary[0]}"
 
       return new_date
     end
 
+    # sets up data for request, makes that request, and sends it through the
+    # rover modules parser to get back an array of images, or the string no
+    # data found 
     def rover_request(rover_module)
       return rover_module.return_array(make_request(rover_module.build_query))
     end
