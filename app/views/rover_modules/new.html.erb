@@ -18,10 +18,17 @@
 
     <div class="row">
       <div class="input-field col s8">
-        <select name="rover_module[camera]">
+        <select multiple name="rover_module[camera]">
+          <option value="" disabled selected>Chose a camera (optional)</option>
 
-          <% @rover_module.camera_types.each do |c_type| %>
-            <option value="<%= c_type %>"><%= c_type %></option>
+          <% @rover_module.camera_types.each do |rover, c_types| %>
+            <optgroup label="<%= rover %>">
+
+              <% c_types.each do |camera| %>
+                <option value="<%= camera %>"><%= camera %></option>
+              <% end %>
+              
+            </optgroup>
           <% end %>
 
         </select>
