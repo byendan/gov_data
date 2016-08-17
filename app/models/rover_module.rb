@@ -22,9 +22,6 @@ class RoverModule < ActiveRecord::Base
     return_query += "earth_date=#{self.date}&"
     return_query += "camera=#{self.camera}&" if self.camera != ""
 
-    # Saves the full query for easier access
-    self.update_attributes(full_query: return_query)
-
     return_query
   end
 
@@ -43,6 +40,4 @@ class RoverModule < ActiveRecord::Base
 
     return pictures
   end
-
-  # TODO make a way to determine valid dates that can be used
 end
