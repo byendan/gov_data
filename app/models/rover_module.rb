@@ -23,9 +23,15 @@ class RoverModule < ActiveRecord::Base
     return_query = self.base_query
     return_query += "#{self.rover}/photos?"
     return_query += "earth_date=#{self.date}&"
-    return_query += "camera=#{self.camera}&" if self.camera != ""
+    return_query += "camera=#{self.camera}&" if self.camera != nil
 
     return_query
+  end
+
+  def build_query_with_page(page)
+    query = build_query
+    query += "page=#{page}&" if page != 1
+    return query
   end
 
   def return_array(json_response)

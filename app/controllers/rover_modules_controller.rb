@@ -72,7 +72,7 @@ class RoverModulesController < ApplicationController
 
     # sets up data for request, makes that request, and sends it through the
     # rover modules parser to get back an array of images, or the string no
-    # data found 
+    # data found
     def rover_request(rover_module)
       return rover_module.return_array(make_request(rover_module.build_query))
     end
