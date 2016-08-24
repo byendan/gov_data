@@ -30,7 +30,7 @@ class RoverModule < ActiveRecord::Base
 
   def build_query_with_page(page)
     query = build_query
-    query += "page=#{page}&" if page != 1
+    query += "page=#{page}&"
     return query
   end
 

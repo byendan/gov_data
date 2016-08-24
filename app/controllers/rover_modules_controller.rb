@@ -24,6 +24,17 @@ class RoverModulesController < ApplicationController
     @module_data = rover_request(@rover_module)
   end
 
+  def more_pictures
+    @rover_module = RoverModule.find(params[:id])
+
+    if request.xhr?
+      @new_module_data = rover_page_request(@rover_module, params[:page])
+      render json: { module_data: @new_module_data }
+    else
+      redirect_to @rover_module
+    end
+  end
+
   def edit
     @rover_modue = RoverModule.find(params[:id])
   end
@@ -75,5 +86,9 @@ class RoverModulesController < ApplicationController
     # data found
     def rover_request(rover_module)
       return rover_module.return_array(make_request(rover_module.build_query))
+    end
+
+    def rover_page_request(rover_module, page)
+      return rover_module.return_array(make_request(rover_module.build_query_with_page(page)))
     end
 end
