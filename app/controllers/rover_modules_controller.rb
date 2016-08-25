@@ -22,6 +22,26 @@ class RoverModulesController < ApplicationController
   def show
     @rover_module = RoverModule.find(params[:id])
     @module_data = rover_request(@rover_module)
+
+    @rover_module.page_number = 1
+    @rover_module.picture_count = @module_data.length
+    @rover_module.save
+  end
+
+  def more_pictures
+    @rover_module = RoverModule.find(params[:id])
+    rover_page = @rover_module.page_number + 1
+    if request.xhr?
+      @new_module_data = rover_page_request(@rover_module, rover_page)
+
+      @rover_module.page_number = rover_page
+      @rover_module.picture_count = @new_module_data.length
+      @rover_module.save
+      
+      render json: { module_data: @new_module_data }
+    else
+      redirect_to @rover_module
+    end
   end
 
   def edit
@@ -72,8 +92,12 @@ class RoverModulesController < ApplicationController
 
     # sets up data for request, makes that request, and sends it through the
     # rover modules parser to get back an array of images, or the string no
-    # data found 
+    # data found
     def rover_request(rover_module)
       return rover_module.return_array(make_request(rover_module.build_query))
+    end
+
+    def rover_page_request(rover_module, page)
+      return rover_module.return_array(make_request(rover_module.build_query_with_page(page)))
     end
 end
