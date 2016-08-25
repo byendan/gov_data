@@ -22,13 +22,22 @@ class RoverModulesController < ApplicationController
   def show
     @rover_module = RoverModule.find(params[:id])
     @module_data = rover_request(@rover_module)
+
+    @rover_module.page_number = 1
+    @rover_module.picture_count = @module_data.length
+    @rover_module.save
   end
 
   def more_pictures
     @rover_module = RoverModule.find(params[:id])
-
+    rover_page = @rover_module.page_number + 1
     if request.xhr?
-      @new_module_data = rover_page_request(@rover_module, params[:page])
+      @new_module_data = rover_page_request(@rover_module, rover_page)
+
+      @rover_module.page_number = rover_page
+      @rover_module.picture_count = @new_module_data.length
+      @rover_module.save
+      
       render json: { module_data: @new_module_data }
     else
       redirect_to @rover_module

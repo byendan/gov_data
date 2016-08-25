@@ -9,8 +9,8 @@
 </div>
 <div class="row">
   <div class="col s4 offset-s4">
-    <% if has_more_pictures(@module_data.length) %>
-      <%= button_to "Show More", more_pictures_path(@rover_module), class: "waves-effect waves-light btn-large", method: :put, remote: true, params: { page: page_number(@module_data.length), id: @rover_module.id } %>
+    <% if has_more_pictures(@rover_module.picture_count) %>
+      <%= button_to "Show More", more_pictures_path(@rover_module), class: "waves-effect waves-light btn-large", method: :put, remote: true, params: { id: @rover_module.id } %>
     <% end %>
   </div>
 </div>

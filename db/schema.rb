@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811211117) do
+ActiveRecord::Schema.define(version: 20160825010534) do
 
   create_table "apod_modules", force: :cascade do |t|
     t.string   "name"
@@ -27,8 +27,10 @@ ActiveRecord::Schema.define(version: 20160811211117) do
     t.string   "rover"
     t.string   "camera"
     t.string   "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "page_number"
+    t.integer  "picture_count"
   end
 
 end
