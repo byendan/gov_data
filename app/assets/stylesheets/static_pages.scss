@@ -5,55 +5,54 @@
 
 $fadded-backdrop: rgba(51, 51, 51, 0.25);
 
-.nasa-apod {
-  width: 100%;
-  height: 600px;
+.intro-area {
+  text-align: center;
+  padding: 30px;
+  font-family: 'Nobile', sans-serif;
+}
 
-  background-repeat: no-repeat;
-  background-position: center;
+.apod-full-area {
+  background-color: #212121;
+  padding-top: 10px;
+  color: white;
+  .row {
+    margin-bottom: 5px;
 
-  .nasa-backdrop {
-    width: 100%;
-    height: 100%;
-    background-color: $fadded-backdrop;
+    div {
+      padding: 0px;
+    }
+
+    .apod-name {
+      padding-left: 15px;
+    }
+
+
   }
 
-  .nasa-image-title {
-    padding: 5px;
-    padding-left: 15px;
-    //background-color: $fadded-backdrop;
-    color: white;
-    font-weight: 500;
-    text-shadow: 1px 1px #333333;
-  }
+  .apod-img-desc {
+    height: 500px;
 
-  .tagline {
-    text-align: center;
-    margin-top: 15%;
-    //background-color: $fadded-backdrop;
+    .apod-image-area {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
 
-    h2 {
-      font-family: 'Nobile', sans-serif;
-      color: white;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 40px;
-      line-height: 150%;
-      text-shadow: 2px 2px #333333;
+    .apod-description {
+      background-color: #424242;
+      padding: 15px;
+      bottom: 0px;
+      margin-top: 10%;
+      font-size: 1.2em;
     }
   }
 }
 
-.nasa-explanation-title {
-  margin-bottom: 0px !important;
-  h3 {
-    color: white;
-  }
-}
-
-.nasa-explanation {
-  margin-top: 0;
-  margin-bottom: 0px !important;
-  border-bottom: solid 1px #424242;
-
+.apod-info {
+  text-align: center;
+  padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1.2em;
 }
