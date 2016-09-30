@@ -1,7 +1,7 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'https://fonts.googleapis.com/css?family=Nobile:700|Poiret+One';
+@import 'https://fonts.googleapis.com/css?family=Nobile:400,700|Poiret+One';
 
 $fadded-backdrop: rgba(51, 51, 51, 0.25);
 
@@ -9,6 +9,7 @@ $fadded-backdrop: rgba(51, 51, 51, 0.25);
   text-align: center;
   padding: 30px;
   font-family: 'Nobile', sans-serif;
+  font-weight: 700;
 }
 
 .apod-full-area {
@@ -55,4 +56,6 @@ $fadded-backdrop: rgba(51, 51, 51, 0.25);
   padding-top: 20px;
   padding-bottom: 20px;
   font-size: 1.2em;
+  font-family: 'Nobile', sans-serif;
+  font-weight: 400;
 }
