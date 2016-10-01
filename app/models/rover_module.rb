@@ -14,8 +14,18 @@ class RoverModule < ActiveRecord::Base
 
   def camera_types
     {
-      'Curiosity' => ['fhaz', 'rhaz', 'mast', 'chemcam', 'mahli', 'mardi', 'navcam'],
-      'Opportunity and Spirit' => ['fhaz', 'rhaz', 'navcam', 'pancam', 'minites']
+      'Curiosity' => [['fhaz', 'Front Hazard Avoidance'],
+                      ['rhaz', 'Rear Hazard Avoidance'],
+                      ['mast', 'Mast Camera'],
+                      ['chemcam', 'Chemistry and Camera Complex'],
+                      ['mahli', 'Mars Hand Lens Imager'],
+                      ['mardi', 'Mars Descent Imager'],
+                      ['navcam', 'Navigation Camera']],
+      'Opportunity and Spirit' => [['fhaz', 'Front Hazard Avoidance'],
+                                  ['rhaz', 'Rear Hazard Avoidance'],
+                                  ['navcam', 'Navigation Camera'],
+                                  ['pancam', 'Panoramic Camera'],
+                                  ['minites', 'Miniature Thermal Emission Spectrometer (Mini-TES)']]
     }
   end
 
