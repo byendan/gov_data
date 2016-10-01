@@ -5,39 +5,67 @@ namespace :valid_rover_dates do
     log = ActiveSupport::Logger.new('log/test_rake.log')
     log.info "This rake task is working"
 
-    # if there are rover dates, find the most recent date and set the following
-    # date to be the start date
-    if ValidRoverDate.all.any?
-      start_date = ValidRoverDates.order(:created_at).last.created_at.strftime("%Y-%m-%d")
 
-    # if there are no rover dates set the start date to the first
-    # date where rovers took pictures
-    else
-      start_date = "2012-08-05"
-    end
-    log.info "the start date has been set to #{start_date}"
+    rovers = %w(Curiosity Spirit Opportunity)
 
-    year, month, day = start_date.split("-").map(&:to_i)
-    start_date = Date.new(year, month, day).next
-    today = Date.today
-    log.info "the start date is #{start_date}"
-    log.info "todays date is #{Date.today}"
+    rovers.each do |rover|
+      rover_manifest = get_manifest(rover)
+      max_sol = rover_manifest["photo_manifest"]["max_sol"]
+      photos = rover_manifest["photo_manifest"]["photos"]
 
-    curiosity_cams = ['fhaz', 'rhaz', 'mast', 'chemcam', 'mahli', 'mardi', 'navcam']
-    opp_and_spirit_cams = ['fhaz', 'rhaz', 'navcam', 'pancam', 'minites']
-    rovers_with_cams = {
-      'curiosity'   => curiosity_cams,
-      'opportunity' => opp_and_spirit_cams,
-      'spirit'      => opp_and_spirit_cams
-    }
+      # If there is no records for the rover the start sol is 0
+      if ValidRoverDate.where("rover = ?", rover).length == 0
+        start_sol = 0
+      else
+      # If there are records for the rover the start sol will be
+      # 1 plus the most recent records sol
+        start_sol = ValidRoverDate.where("rover = ?", rover).order(:created_at).last.sol
+        start_sol += 1
+      end
 
-    rovers_with_cams.each do |rover, cam_list|
-      # first try rover with no cam
+      # reduce size of photos array to only include photos that have not been added
+      photos = reduce_photos(photos) if start_sol > 0
 
+      photos.each do |photo|
 
-      #then try all the cams for the rover
+        # Sets up the query for the rover on this sol without selecting a camera
+        basic_valid_date = ValidRoverDate.new()
+        basic_valid_date.sol = photo["sol"].to_i
+        basic_valid_date.rover = rover
+        basic_valid_date.camera = "none"
+        basic_valid_date.save
+        log.info "This item was just added to the database: #{basic_valid_date}"
+
+        # saves dates for each camera for the rover on this sol
+        photo["cameras"].each do |camera|
+          camera_valid_date = ValidRoverDate.new()
+          camera_valid_date.sol = photo["sol"].to_i
+          camera_valid_date.rover = rover
+          camera_valid_date.camera = camera
+          camera_valid_date.save
+          log.info "This item was just added to the database: #{camera_valid_date}"
+        end
+
+      end
 
     end
 
   end
+end
+
+def get_manifest(rover)
+
+  api_key = ENV["GOV_API_KEY"]
+  query = "https://api.nasa.gov/mars-photos/api/v1/manifests/#{rover}?api_key=#{api_key}"
+
+  return JSON.parse Net::HTTP.get(URI(query))
+end
+
+def reduce_photos(photos)
+  for i in 0...photos.length do
+    if photos[i]["sol"] >= start_sol
+      return photos[i...photos.length]
+    end
+  end
+  return photos
 end
