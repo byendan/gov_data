@@ -11,22 +11,22 @@ RSpec.describe RoverModule, type: :model do
     end
 
     it "validates rover and date" do
-      test_module = RoverModule.new(rover: "curiosity", date:"2015-6-3")
+      test_module = RoverModule.new(rover: "curiosity", date:"1000")
 
       expect(test_module).to be_valid
     end
 
     it "builds a query successfully" do
-      test_module = RoverModule.new(rover: "curiosity", date: "2015-6-3", camera: "")
+      test_module = RoverModule.new(rover: "curiosity", date: "1000", camera: "")
       test_module.save
 
-      expected_query = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&'
+      expected_query = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&'
 
       expect(test_module.build_query).to eq(expected_query)
     end
 
     it "finds the pictures from the json response" do
-      test_module = RoverModule.new(rover: "curiosity", date: "2015-6-3")
+      test_module = RoverModule.new(rover: "curiosity", date: "1000")
       test_module.save
       json_data = JSON.parse(File.read("./spec/support/fixtures/rover.json"))
 

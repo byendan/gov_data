@@ -22,7 +22,7 @@ class RoverModule < ActiveRecord::Base
   def build_query
     return_query = self.base_query
     return_query += "#{self.rover}/photos?"
-    return_query += "earth_date=#{self.date}&"
+    return_query += "sol=#{self.date}&"
     return_query += "camera=#{self.camera}&" if self.camera != nil
 
     return_query
