@@ -19,6 +19,18 @@ class RoverModulesController < ApplicationController
 
   end
 
+  def find_dates
+    @rover = params[:rover_module][:rover]
+    @camera = params[:rover_module][:camera]
+    @camera = "none" if @camera == nil
+
+    respond_to do |format|
+      @dates = ValidRoverDate.where("rover = ? AND camera = ?", @rover, @camera)
+      format.js {render "load_dates"}
+    end
+
+  end
+
   def show
     @rover_module = RoverModule.find(params[:id])
     @module_data = rover_request(@rover_module)
@@ -37,7 +49,7 @@ class RoverModulesController < ApplicationController
       @rover_module.page_number = rover_page
       @rover_module.picture_count = @new_module_data.length
       @rover_module.save
-      
+
       render json: { module_data: @new_module_data }
     else
       redirect_to @rover_module
@@ -64,6 +76,10 @@ class RoverModulesController < ApplicationController
 
     def rover_params
       params.require(:rover_module).permit(:rover, :camera, :date)
+    end
+
+    def search_date_params
+      params.permit(:rover, :camera)
     end
 
     def fix_date(initial_date)

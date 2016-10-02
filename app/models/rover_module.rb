@@ -9,7 +9,7 @@ class RoverModule < ActiveRecord::Base
   end
 
   def rover_types
-    ['curiosity', 'opportunity', 'spirit']
+    ['Curiosity', 'Opportunity', 'Spirit']
   end
 
   def camera_types

@@ -1,0 +1,5 @@
+<%= @dates.each do |date| %>
+  <% if date != nil %>
+    $("<%= escape_javascript(render partial: 'valid_rover_date', locals: {date: date}) %>").appendTo(".dates-area");
+  <% end %>
+<% end %>

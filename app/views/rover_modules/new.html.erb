@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @rover_module do |f| %>
+  <%= form_for(@rover_module, remote: true, url: find_dates_path) do |f| %>
 
     <h2>Rover Module</h2>
 
@@ -43,5 +43,10 @@
       </div>
     </div>
 
+
   <% end %>
+
+  <div class="row dates-area">
+
+  </div>
 </div>

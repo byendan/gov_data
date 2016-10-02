@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :apod_modules
   resources :rover_modules
   put 'more_pictures' => 'rover_modules#more_pictures'
+  post 'find_dates'    => 'rover_modules#find_dates'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
