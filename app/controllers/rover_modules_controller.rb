@@ -25,8 +25,10 @@ class RoverModulesController < ApplicationController
     @camera = "none" if @camera == nil
 
     respond_to do |format|
-      @dates = ValidRoverDate.where("rover = ? AND camera = ?", @rover, @camera)
-      format.js {render "load_dates"}
+
+      temp_rover = ValidRoverDate.where("rover = ? AND camera = ?", @rover, @camera).first
+      @sols = temp_rover.sols.split(",")
+      format.js 
     end
 
   end

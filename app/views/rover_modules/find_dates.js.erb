@@ -1,0 +1,5 @@
+<% @sols.each do |sol| %>
+  <% if sol != nil %>
+    $(".dates-area").append("<%= escape_javascript(render partial: 'valid_rover_date', locals: {sol: sol, rover: @rover, camera: @camera}) %>");
+  <% end %>
+<% end %>

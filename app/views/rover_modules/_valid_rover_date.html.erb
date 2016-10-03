@@ -1,6 +1,1 @@
-<div class='col s1'>
-  <p>
-    <input name='<%= "#{date.rover}-#{date.camera}-#{date.sol}" %>' id='<%= date.id %>' />
-    <label for='<%= date.id %>'>Martian Sol <%= date.sol %></label>
-  </p>
-</div>
+<div class='col s2'><p><input type="radio" name='sol-group' class="with-gap" id='<%= "#{rover}-#{camera}-#{sol}" %>' /><label for='<%= "#{rover}-#{camera}-#{sol}" %>'>Martian Sol <%= sol %>
