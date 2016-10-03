@@ -8,6 +8,13 @@ namespace :valid_rover_dates do
 
     rovers = %w(Curiosity Spirit Opportunity)
 
+
+    if ValidRoverDate.all.length == 0
+      rover_data = new_hash
+    else
+      rover_data = load_valid_dates(rovers)
+    end
+
     rovers.each do |rover|
       rover_manifest = get_manifest(rover)
       max_sol = rover_manifest["photo_manifest"]["max_sol"]
@@ -18,38 +25,55 @@ namespace :valid_rover_dates do
         start_sol = 0
       else
       # If there are records for the rover the start sol will be
-      # 1 plus the most recent records sol
-        start_sol = ValidRoverDate.where("rover = ?", rover).order(:created_at).last.sol
-        start_sol += 1
+      # 1 plus the largest sol found from all of the rovers cameras
+        check_rovers = ValidRoverDate.where("rover = ?", rover)
+        max_sol = 0
+
+        check_rovers.each do |check_rover|
+          last_sol = check_rover.sols.split(",").last
+          max_sol = last_sol if last_sol > max_sol
+        end
+
+        start_sol = max_sol + 1
       end
 
       # reduce size of photos array to only include photos that have not been added
       photos = reduce_photos(photos) if start_sol > 0
 
       photos.each do |photo|
+        sol = photo["sol"]
+        # Loads the sol into the hash for the rover having no specified camera
+        rover_data["#{rover}-none"] << sol
+        log.info "The sol #{sol} was added to #{rover}-none"
 
-        # Sets up the query for the rover on this sol without selecting a camera
-        basic_valid_date = ValidRoverDate.new()
-        basic_valid_date.sol = photo["sol"].to_i
-        basic_valid_date.rover = rover
-        basic_valid_date.camera = "none"
-        basic_valid_date.save
-        log.info "This item was just added to the database: #{basic_valid_date}"
-
-        # saves dates for each camera for the rover on this sol
+        # Loads the sol for each camera for the rover with pictures on this sol
         photo["cameras"].each do |camera|
-          camera_valid_date = ValidRoverDate.new()
-          camera_valid_date.sol = photo["sol"].to_i
-          camera_valid_date.rover = rover
-          camera_valid_date.camera = camera
-          camera_valid_date.save
-          log.info "This item was just added to the database: #{camera_valid_date}"
+          camera = camera.downcase
+          log.info "Trying to add data for #{rover} #{camera}"
+          rover_data["#{rover}-#{camera}"] << sol
+          log.info "The sol #{sol} was added to #{rover}-#{camera}"
         end
 
       end
 
     end
 
+    # Uses the data from the hash to make new valid rover date objects
+    rover_data.each do |rover_and_cam, sol_text|
+      rover, cam = rover_and_cam.split("-")
+      if ValidRoverDate.where("rover = ? AND camera = ?", rover, cam).length == 0
+        new_valid_dates = ValidRoverDate.new()
+        new_valid_dates.rover = rover
+        new_valid_dates.camera = cam
+        new_valid_dates.sols = sol_text.join(",")
+        new_valid_dates.save
+      else
+        update_valid_dates = ValidRoverDate.where("rover = ? AND camera = ?", rover, cam)
+        update_valid_dates.sols = sol_text.join(",")
+        update_valid_dates.save
+      end
+      log.info "#{rover} #{cam} has had it's sols saved"
+    end
   end
 end
 
@@ -68,4 +92,49 @@ def reduce_photos(photos)
     end
   end
   return photos
+end
+
+def new_hash
+  return_hash = Hash.new()
+
+  return_hash['Curiosity-none'] = Array.new
+  return_hash['Curiosity-entry'] = Array.new
+  return_hash['Curiosity-fhaz'] = Array.new
+  return_hash['Curiosity-rhaz'] = Array.new
+  return_hash['Curiosity-mast'] = Array.new
+  return_hash['Curiosity-chemcam'] = Array.new
+  return_hash['Curiosity-mahli'] = Array.new
+  return_hash['Curiosity-mardi'] = Array.new
+  return_hash['Curiosity-navcam'] = Array.new
+  return_hash['Opportunity-none'] = Array.new
+  return_hash['Opportunity-entry'] = Array.new
+  return_hash['Opportunity-fhaz'] = Array.new
+  return_hash['Opportunity-rhaz'] = Array.new
+  return_hash['Opportunity-navcam'] = Array.new
+  return_hash['Opportunity-pancam'] = Array.new
+  return_hash['Opportunity-minites'] = Array.new
+  return_hash['Spirit-none'] = Array.new
+  return_hash['Spirit-entry'] = Array.new
+  return_hash['Spirit-fhaz'] = Array.new
+  return_hash['Spirit-rhaz'] = Array.new
+  return_hash['Spirit-navcam'] = Array.new
+  return_hash['Spirit-pancam'] = Array.new
+  return_hash['Spirit-minites'] = Array.new
+
+  return_hash
+end
+
+def load_valid_dates(rovers)
+  return_hash = Hash.new
+
+  rovers.each do |rover|
+    rovers_with_cams = ValidRoverDate.where("rover = ?", rover)
+
+    rovers_with_cams.each do |r_with_c|
+      return_hash["#{rover}-#{r_with_c.camera}"] = r_with_c.sols.split(",")
+    end
+
+  end
+
+  return_hash
 end
