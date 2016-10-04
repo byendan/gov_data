@@ -49,6 +49,12 @@ class RoverModulesController < ApplicationController
     @rover_module.page_number = 0
     @rover_module.picture_count = @pictures.length
     @rover_module.save
+
+    if @pictures.length >= 20
+      @current_pictures = @pictures[0..19]
+    else
+      @current_pictures = @pictures[0...@pictures.length]
+    end
   end
 
   def get_next_page
@@ -61,9 +67,9 @@ class RoverModulesController < ApplicationController
     @rover_module.page_number = current_page
     @rover_module.save
 
-    start_page = 20 * current_page
-    last_page = start_page + 19
-    @current_pictures = @pictures[start_page...last_page]
+    @start_page = 20 * current_page
+    @last_page = @start_page + 19
+    @current_pictures = @pictures[@start_page..@last_page]
 
     respond_to do |format|
       format.js {render 'load_pictures'}
@@ -81,31 +87,15 @@ class RoverModulesController < ApplicationController
     @rover_module.save
 
     @start_page = 20 * @current_page
-    @last_page = @start_page + 20
+    @last_page = @start_page + 19
+    @current_pictures = @pictures[@start_page..@last_page]
 
     respond_to do |format|
       format.js {render 'load_pictures'}
-      format.json {render 'load_pictures'}
-      format.html
     end
 
   end
 
-  def more_pictures
-    @rover_module = RoverModule.find(params[:id])
-    rover_page = @rover_module.page_number + 1
-    if request.xhr?
-      @new_module_data = rover_page_request(@rover_module, rover_page)
-
-      @rover_module.page_number = rover_page
-      @rover_module.picture_count = @new_module_data.length
-      @rover_module.save
-
-      render json: { module_data: @new_module_data }
-    else
-      redirect_to @rover_module
-    end
-  end
 
   def edit
     @rover_modue = RoverModule.find(params[:id])

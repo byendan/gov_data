@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :apod_modules
   resources :rover_modules
-  put 'more_pictures' => 'rover_modules#more_pictures'
+
   post 'find_dates'    => 'rover_modules#find_dates'
   post 'process_rover' => 'rover_modules#process_rover'
   put 'get_prev_page' => 'rover_modules#get_prev_page'
