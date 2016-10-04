@@ -49,6 +49,12 @@
     <div class="row dates-area">
 
     </div>
-    <%= f.submit "View photos", class: "btn photo-query-submit" %>
+    <%= f.submit "View photos", class: "btn photo-query-submit disabled" %>
   <% end %>
 </div>
+
+<script>
+$( document ).ready(function() {
+  $('select').material_select();
+});
+</script>

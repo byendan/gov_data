@@ -4,3 +4,4 @@ $(".dates-area").empty();
     $(".dates-area").append("<%= escape_javascript(render partial: 'valid_rover_date', locals: {sol: sol, rover: @rover, camera: @camera}) %>");
   <% end %>
 <% end %>
+$(".photo-query-submit").removeClass("disabled");
