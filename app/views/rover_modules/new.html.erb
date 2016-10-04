@@ -18,7 +18,7 @@
 
     <div class="row">
       <div class="input-field col s8">
-        <select multiple name="rover_module[camera]">
+        <select name="rover_module[camera]">
           <option value="" disabled selected>Chose a camera (optional)</option>
 
           <% @rover_module.camera_types.each do |rover, c_types| %>
@@ -45,9 +45,10 @@
 
 
   <% end %>
-  <form action="#">
+  <%= form_for(@rover_module, url: process_rover_path) do |f| %>
     <div class="row dates-area">
 
     </div>
-  </form>
+    <%= f.submit "View photos", class: "btn photo-query-submit" %>
+  <% end %>
 </div>

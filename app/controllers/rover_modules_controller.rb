@@ -28,9 +28,17 @@ class RoverModulesController < ApplicationController
 
       temp_rover = ValidRoverDate.where("rover = ? AND camera = ?", @rover, @camera).first
       @sols = temp_rover.sols.split(",")
-      format.js 
+      format.js
     end
 
+  end
+
+  def process_rover
+    @rover_full = params[:sol_group]
+    rover,camera,date = @rover_full.split("-")
+    rover_module = RoverModule.new(rover: rover, camera: camera, date: date)
+    rover_module.save
+    redirect_to rover_module
   end
 
   def show
