@@ -16,7 +16,7 @@ class ApodModule < ActiveRecord::Base
     return_hash[:title] = json_response["title"]
     return_hash[:description] = json_response["explanation"]
     return_hash[:img_url] = json_response["hdurl"]
-
+    return_hash[:img_url] = json_response["url"] if return_hash[:img_url] == nil
     return_hash
   end
 

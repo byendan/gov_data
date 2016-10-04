@@ -5,7 +5,7 @@ $(document).on 'page:load ready', ->
   $('.datepicker').pickadate
     selectMonths: true
     selectYears: 4
-  $('select').material_select()
+   $('select').material_select()
   return
 
 $(document).on 'ajax:success', (status,data,xhr)->

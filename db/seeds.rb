@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 ApodModule.create()
-RoverModule.create(rover: "curiosity", camera: "", date: "6-3-2015")
+RoverModule.create(rover: "curiosity", camera: "none", date: "1000")

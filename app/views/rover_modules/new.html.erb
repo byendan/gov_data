@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @rover_module do |f| %>
+  <%= form_for(@rover_module, remote: true, url: find_dates_path) do |f| %>
 
     <h2>Rover Module</h2>
 
@@ -18,16 +18,16 @@
 
     <div class="row">
       <div class="input-field col s8">
-        <select multiple name="rover_module[camera]">
+        <select name="rover_module[camera]">
           <option value="" disabled selected>Chose a camera (optional)</option>
 
           <% @rover_module.camera_types.each do |rover, c_types| %>
             <optgroup label="<%= rover %>">
 
               <% c_types.each do |camera| %>
-                <option value="<%= camera %>"><%= camera %></option>
+                <option value="<%= camera[0] %>"><%= camera[1] %></option>
               <% end %>
-              
+
             </optgroup>
           <% end %>
 
@@ -36,24 +36,19 @@
       </div>
     </div>
 
+
     <div class="row">
-      <div class="input-field col s8">
-        <label>Date</label>
+      <div class="col s3 offset-s2">
+        <%= f.submit "Find Valid Martian Sols", class: "btn" %>
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s8">
 
-        <input type="date" class="datepicker" name="rover_module[date]">
-      </div>
+  <% end %>
+  <%= form_for(@rover_module, url: process_rover_path) do |f| %>
+    <div class="row dates-area">
+
     </div>
-
-    <div class="row">
-      <div class="col s3 offset-s5">
-        <%= f.submit "Create Rover Module", class: "btn" %>
-      </div>
-    </div>
-
+    <%= f.submit "View photos", class: "btn photo-query-submit" %>
   <% end %>
 </div>

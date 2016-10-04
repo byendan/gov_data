@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20161001070601) do
     t.string   "camera"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "sol"
+    t.text     "sols"
   end
 
 end
