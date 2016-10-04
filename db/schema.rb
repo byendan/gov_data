@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001070601) do
+ActiveRecord::Schema.define(version: 20161004062014) do
 
   create_table "apod_modules", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161001070601) do
     t.datetime "updated_at",    null: false
     t.integer  "page_number"
     t.integer  "picture_count"
+    t.text     "pictures"
   end
 
   create_table "valid_rover_dates", force: :cascade do |t|

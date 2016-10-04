@@ -1,0 +1,33 @@
+$(".picture-area").empty();
+<% @current_pictures.each do |picture| %>
+  $(".picture-area").append('<div class="col s4 rover-img"><img src="<%= picture %>" class="responsive-img materialboxed">');
+<% end %>
+$('.materialboxed').materialbox();
+
+<% if @last_page >= @pictures.length %>
+  $(".button_to").has(".right-button").attr("disabled", "true");
+  $(".right-button").addClass("grey lighten-5");
+  $(".right-button").children().attr("disabled", "true");
+  $(".right-button").children().addClass("grey-text text-darken-4")
+
+<% else %>
+    $(".button_to").has(".right-button").removeAttr("disabled");
+    $(".right-button").removeClass("grey lighten-5");
+    $(".right-button").children().removeAttr("disabled");
+    $(".right-button").children().removeClass("grey-text text-darken-4")
+<% end %>
+
+
+<% if @start_page <= 0 %>
+  $(".button_to").has(".left-button").attr("disabled", "true");
+  $(".left-button").addClass("grey lighten-5");
+  $(".left-button").children().attr("disabled", "true");
+  $(".left-button").children().addClass("grey-text text-darken-4")
+<% else %>
+  $(".button_to").has(".left-button").removeAttr("disabled");
+  $(".left-button").removeClass("grey lighten-5");
+  $(".left-button").children().removeAttr("disabled");
+  $(".left-button").children().removeClass("grey-text text-darken-4");
+<% end %>
+
+window.scrollTo(0,0);
