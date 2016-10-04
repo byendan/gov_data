@@ -43,11 +43,52 @@ class RoverModulesController < ApplicationController
 
   def show
     @rover_module = RoverModule.find(params[:id])
-    @module_data = rover_request(@rover_module)
+    @rover_module.pictures = rover_request(@rover_module).join(",")
+    @pictures = @rover_module.pictures.split(",")
 
-    @rover_module.page_number = 1
-    @rover_module.picture_count = @module_data.length
+    @rover_module.page_number = 0
+    @rover_module.picture_count = @pictures.length
     @rover_module.save
+  end
+
+  def get_next_page
+
+    @rover_module = RoverModule.find(params[:id])
+    @pictures = @rover_module.pictures.split(",")
+    current_page = @rover_module.page_number
+
+    current_page += 1
+    @rover_module.page_number = current_page
+    @rover_module.save
+
+    start_page = 20 * current_page
+    last_page = start_page + 19
+    @current_pictures = @pictures[start_page...last_page]
+
+    respond_to do |format|
+      format.js {render 'load_pictures'}
+    end
+
+  end
+
+  def get_prev_page
+    @rover_module = RoverModule.find(params[:id])
+    @pictures = @rover_module.pictures.split(",")
+    @current_page = @rover_module.page_number
+
+    @current_page -= 1
+    @rover_module.page_number = @current_page
+    @rover_module.save
+
+    @start_page = 20 * @current_page
+    @last_page = @start_page + 20
+
+    respond_to do |format|
+      format.js {render 'load_pictures'}
+      format.json {render 'load_pictures'}
+      format.html
+    end
+
   end
 
   def more_pictures
