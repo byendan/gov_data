@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'process_rover' => 'rover_modules#process_rover'
   put 'get_prev_page' => 'rover_modules#get_prev_page'
   put 'get_next_page' => 'rover_modules#get_next_page'
+
+  get '/front' => 'static_pages#front'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
