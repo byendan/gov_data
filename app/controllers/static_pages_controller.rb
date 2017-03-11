@@ -8,11 +8,9 @@ class StaticPagesController < ApplicationController
   end
 
   def front
+    # Astronomical picture of the day(APOD)
     @apod_module = get_apod
   end
-
-
-
 
   private
 
@@ -27,7 +25,5 @@ class StaticPagesController < ApplicationController
         description: json_response["explanation"],
         img_url: json_response["hdurl"] || json_response["url"]
       }
-
-      return_data
     end
 end
