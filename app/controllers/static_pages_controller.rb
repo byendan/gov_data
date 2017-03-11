@@ -1,12 +1,6 @@
 class StaticPagesController < ApplicationController
   include GovApi
 
-  def show
-    # sets up nasa image of day
-    @apod_module = ApodModule.last
-    @module_data = @apod_module.return_data(make_request(@apod_module.build_query))
-  end
-
   def front
     # Astronomical picture of the day(APOD)
     @apod_module = get_apod
