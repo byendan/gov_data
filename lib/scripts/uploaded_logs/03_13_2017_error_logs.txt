@@ -1,0 +1,214 @@
+Started GET "/" for ::1 at 2017-03-10 16:28:43 -0800
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+--
+--
+Started GET "/fornt" for ::1 at 2017-03-10 16:48:18 -0800
+
+ActionController::RoutingError (No route matches [GET] "/fornt"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (27.2ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (undefined method `react_component' for #<#<Class:0x007faff5b331f0>:0x007faff5ad3318>):
+    1: <%= react_component 'Front' %>
+  app/views/static_pages/front.html.erb:1:in `_app_views_static_pages_front_html_erb__2331126934579800799_70196858822120'
+--
+--
+Processing by RoverModulesController#new as HTML
+  Rendered rover_modules/new.html.erb within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 705ms (ActiveRecord: 0.5ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Unexpected token (4:26)
+  2 | 
+  3 |   getInitialState() {
+--
+--
+Started GET "/" for ::1 at 2017-03-10 17:32:54 -0800
+
+SyntaxError (/Users/brendanbrown/RailsWorkspace/gov_data/app/controllers/static_pages_controller.rb:26: syntax error, unexpected ':', expecting '}'
+        title: json_response["title"],
+              ^
+--
+--
+Started GET "/front" for ::1 at 2017-03-10 17:34:03 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 516ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `sturcture_apod_data' for #<StaticPagesController:0x007fcf34cd3380>
+Did you mean?  structure_apod_data):
+  app/controllers/static_pages_controller.rb:21:in `get_apod'
+--
+--
+Started GET "/front" for ::1 at 2017-03-10 17:34:24 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 503ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `stucture_apod_data' for #<StaticPagesController:0x007fcf2ec9aec8>
+Did you mean?  structure_apod_data):
+  app/controllers/static_pages_controller.rb:21:in `get_apod'
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 1170ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Adjacent JSX elements must be wrapped in an enclosing tag (13:6)
+  11 |       </div>
+  12 | 
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 6896ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Unexpected token (3:0)
+  1 | var Body = React.createClass({
+  2 | 
+--
+--
+Started GET "/" for ::1 at 2017-03-10 19:04:27 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 590ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `attributes' for #<Hash:0x007fda0ac380c0>):
+  app/controllers/static_pages_controller.rb:7:in `front'
+
+--
+--
+Started GET "/" for ::1 at 2017-03-10 19:05:03 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 568ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `attributes' for #<Hash:0x007fda0440f278>):
+  app/controllers/static_pages_controller.rb:7:in `front'
+
+Started GET "/" for ::1 at 2017-03-10 16:28:43 -0800
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+--
+--
+Started GET "/fornt" for ::1 at 2017-03-10 16:48:18 -0800
+
+ActionController::RoutingError (No route matches [GET] "/fornt"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (27.2ms)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (undefined method `react_component' for #<#<Class:0x007faff5b331f0>:0x007faff5ad3318>):
+    1: <%= react_component 'Front' %>
+  app/views/static_pages/front.html.erb:1:in `_app_views_static_pages_front_html_erb__2331126934579800799_70196858822120'
+--
+--
+Processing by RoverModulesController#new as HTML
+  Rendered rover_modules/new.html.erb within layouts/application (2.5ms)
+Completed 500 Internal Server Error in 705ms (ActiveRecord: 0.5ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Unexpected token (4:26)
+  2 | 
+  3 |   getInitialState() {
+--
+--
+Started GET "/" for ::1 at 2017-03-10 17:32:54 -0800
+
+SyntaxError (/Users/brendanbrown/RailsWorkspace/gov_data/app/controllers/static_pages_controller.rb:26: syntax error, unexpected ':', expecting '}'
+        title: json_response["title"],
+              ^
+--
+--
+Started GET "/front" for ::1 at 2017-03-10 17:34:03 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 516ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `sturcture_apod_data' for #<StaticPagesController:0x007fcf34cd3380>
+Did you mean?  structure_apod_data):
+  app/controllers/static_pages_controller.rb:21:in `get_apod'
+--
+--
+Started GET "/front" for ::1 at 2017-03-10 17:34:24 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 503ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `stucture_apod_data' for #<StaticPagesController:0x007fcf2ec9aec8>
+Did you mean?  structure_apod_data):
+  app/controllers/static_pages_controller.rb:21:in `get_apod'
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (0.4ms)
+Completed 500 Internal Server Error in 1170ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Adjacent JSX elements must be wrapped in an enclosing tag (13:6)
+  11 |       </div>
+  12 | 
+--
+--
+Processing by StaticPagesController#front as HTML
+  Rendered static_pages/front.html.erb within layouts/application (0.3ms)
+Completed 500 Internal Server Error in 6896ms (ActiveRecord: 0.0ms)
+
+--
+
+ActionView::Template::Error (SyntaxError: unknown: Unexpected token (3:0)
+  1 | var Body = React.createClass({
+  2 | 
+--
+--
+Started GET "/" for ::1 at 2017-03-10 19:04:27 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 590ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `attributes' for #<Hash:0x007fda0ac380c0>):
+  app/controllers/static_pages_controller.rb:7:in `front'
+
+--
+--
+Started GET "/" for ::1 at 2017-03-10 19:05:03 -0800
+Processing by StaticPagesController#front as HTML
+Completed 500 Internal Server Error in 568ms (ActiveRecord: 0.0ms)
+
+--
+
+NoMethodError (undefined method `attributes' for #<Hash:0x007fda0440f278>):
+  app/controllers/static_pages_controller.rb:7:in `front'
+
