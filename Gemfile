@@ -50,6 +50,7 @@ group :development, :test do
   gem 'capybara', '~> 2.5'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'webmock'
+  gem 'mocha'
 end
 
 group :test do

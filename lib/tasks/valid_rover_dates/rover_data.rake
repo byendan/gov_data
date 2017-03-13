@@ -20,7 +20,7 @@ namespace :valid_rover_dates do
       max_sol = rover_manifest["photo_manifest"]["max_sol"]
       photos = rover_manifest["photo_manifest"]["photos"]
 
-      # If there is no records for the rover the start sol is 0
+      # If there are no records for the rover the start sol is 0
       if ValidRoverDate.where("rover = ?", rover).length == 0
         start_sol = 0
       else
