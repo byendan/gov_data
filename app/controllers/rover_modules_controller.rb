@@ -113,6 +113,12 @@ class RoverModulesController < ApplicationController
     redirect_to root_path
   end
 
+  def rover_populator
+    if ValidRoverDate.all.length == 0
+      @show_button = true
+    end
+  end
+
   private
 
     def rover_params

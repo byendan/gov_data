@@ -8,6 +8,7 @@ var Body = React.createClass({
         <SiteIntro />
         <Apod apodModule={this.props.apodModule} />
         <PostApod />
+        <Rover />
       </div>
     )
   }

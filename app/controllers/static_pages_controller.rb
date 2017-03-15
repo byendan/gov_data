@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
   def front
     # Astronomical picture of the day(APOD)
     @apod_module = get_apod
+  
   end
 
   private

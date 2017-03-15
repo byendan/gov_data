@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#front'
+  get 'populate_valid_dates' => 'rover_modules#rover_populator'
 
   resources :apod_modules
   resources :rover_modules
