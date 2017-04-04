@@ -1,18 +1,6 @@
 class RoverModulesHelperTest < ActionView::TestCase
   include RoverModulesHelper
 
-  test "has more pictures returns true if more than 25" do
-    more_than_twenty_five_pictures = 30
-    has_more_pictures_result = has_more_pictures(more_than_twenty_five_pictures)
-    assert has_more_pictures_result
-  end
-
-  test "has more pictures returns false if less than 25" do
-    less_than_twenty_five_pictures = 20
-    has_more_pictures_result = has_more_pictures(less_than_twenty_five_pictures)
-    assert_not has_more_pictures_result, "The result is #{has_more_pictures_result}"
-  end
-
   test "retrieve manifests for all three rovers" do
     # Makes three network requests, only run if needed
     skip
@@ -27,6 +15,13 @@ class RoverModulesHelperTest < ActionView::TestCase
     rovers.each {|rover| manifests << get_manifest(rover)}
 
     assert_equal expected_total_manifests, manifests.length
+  end
+
+  test "log my manifests" do
+    # Helper to store the manifests makes three network requests
+    skip
+    log_mainfests
+    assert true
   end
 
   test "retrieve manifests using mocks" do
@@ -45,11 +40,18 @@ class RoverModulesHelperTest < ActionView::TestCase
     assert_equal expected_total_manifests, manifests.length
   end
 
-  test "log my manifests" do
-    # Helper to store the manifests makes three network requests
-    skip
-    log_mainfests
-    assert true
+
+
+  test "has more pictures returns true if more than 25" do
+    more_than_twenty_five_pictures = 30
+    has_more_pictures_result = has_more_pictures(more_than_twenty_five_pictures)
+    assert has_more_pictures_result
+  end
+
+  test "has more pictures returns false if less than 25" do
+    less_than_twenty_five_pictures = 20
+    has_more_pictures_result = has_more_pictures(less_than_twenty_five_pictures)
+    assert_not has_more_pictures_result, "The result is #{has_more_pictures_result}"
   end
 
 end
